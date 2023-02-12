@@ -1,4 +1,4 @@
-package app.eleven.bank
+package app.eleven.bank.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import app.eleven.bank.ui.theme.OrangeBankTheme
+import app.eleven.bank.framework.theme.OrangeBankTheme
 
 class MainActivity : ComponentActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {

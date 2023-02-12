@@ -1,4 +1,4 @@
-package app.eleven.bank.ui.theme
+package app.eleven.bank.framework.theme
 
 import android.app.Activity
 import android.os.Build
