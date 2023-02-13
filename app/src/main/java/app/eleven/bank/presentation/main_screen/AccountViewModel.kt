@@ -28,7 +28,7 @@ class AccountViewModel @Inject constructor(
 		getAccounts()
 	}
 
-	fun getAccounts() {
+	private fun getAccounts() {
 		getAccountsUC().onEach { resource ->
 			when (resource) {
 				is Resource.Error -> _accountState.value =
@@ -40,7 +40,7 @@ class AccountViewModel @Inject constructor(
 		}.launchIn(viewModelScope)
 	}
 
-	fun getTransactionsByAccount(url: String) {
+	private fun getTransactionsByAccount(url: String) {
 		getTransactionsUC(url).onEach { resource ->
 			when (resource) {
 				is Resource.Error -> _transactionState.value =
