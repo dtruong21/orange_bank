@@ -19,14 +19,21 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import app.eleven.bank.domain.model.Transaction
+import app.eleven.bank.presentation.Screen
 import app.eleven.bank.presentation.main_screen.component.AccountDropDownList
 import app.eleven.bank.presentation.main_screen.component.TransactionList
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.delay
 
 @Composable
-fun AccountScreen(navController: NavController, viewModel: AccountViewModel = hiltViewModel()) {
+fun AccountScreen(
+	navController: NavController,
+	viewModel: AccountViewModel = hiltViewModel()
+) {
 	AccountScreenContent(
 		navController = navController,
 		viewModel.accountState.collectAsState().value,
@@ -43,7 +50,7 @@ fun AccountScreenContent(
 	navController: NavController,
 	accountState: AccountState,
 	transactionState: TransactionState,
-	onLoadTransaction: (url: String) -> Unit
+	onLoadTransaction: (url: String) -> Unit,
 ) {
 
 	val urlTransaction = remember {
@@ -120,8 +127,12 @@ fun AccountScreenContent(
 						}
 					}
 					transactionState.transactions.isNotEmpty() -> {
-						TransactionList(transactions = transactionState.transactions){
+						TransactionList(transactions = transactionState.transactions) {
+							val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
+							val jsonAdapter = moshi.adapter(Transaction::class.java).lenient()
+							val transactionJson = jsonAdapter.toJson(it)
 
+							navController.navigate(Screen.TransactionScreen.route + "/$transactionJson")
 						}
 					}
 					else -> {

@@ -10,11 +10,14 @@ import app.eleven.bank.domain.model.Transaction
 import app.eleven.bank.domain.model.TransactionType
 
 @Composable
-fun TransactionList(transactions: List<Transaction>, onOpenDetailTransaction: (transaction: Transaction) -> Unit) {
+fun TransactionList(
+	transactions: List<Transaction>,
+	onOpenDetailTransaction: (transaction: Transaction) -> Unit
+) {
 	Column(
 		modifier = Modifier
 			.fillMaxWidth()
-			.padding(4.dp)
+			.padding(10.dp)
 	) {
 		Text(text = "Crédit")
 		Spacer(
@@ -35,7 +38,7 @@ fun TransactionList(transactions: List<Transaction>, onOpenDetailTransaction: (t
 			}
 		} else {
 			credits.forEach { item ->
-				TransactionItem(transaction = item){
+				TransactionItem(transaction = item) {
 					onOpenDetailTransaction(it)
 				}
 			}
@@ -61,7 +64,7 @@ fun TransactionList(transactions: List<Transaction>, onOpenDetailTransaction: (t
 			}
 		} else {
 			debits.forEach { item ->
-				TransactionItem(transaction = item){
+				TransactionItem(transaction = item) {
 					onOpenDetailTransaction(it)
 				}
 			}

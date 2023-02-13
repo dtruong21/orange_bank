@@ -1,9 +1,5 @@
 package app.eleven.bank.domain.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class Transaction(
 	val id: String,
 	val ref: String,
@@ -13,7 +9,7 @@ data class Transaction(
 	val status: TransactionStatus,
 	val information: String,
 	val date: String,
-) : Parcelable
+)
 
 enum class TransactionType {
 	CREDIT, DEBIT

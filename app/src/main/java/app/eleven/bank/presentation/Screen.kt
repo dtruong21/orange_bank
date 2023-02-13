@@ -6,7 +6,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import app.eleven.bank.presentation.main_screen.AccountScreen
+import app.eleven.bank.presentation.transaction_screen.TransactionDetailScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 
@@ -27,8 +30,10 @@ fun NavigationGraph(navController: NavHostController, padding: PaddingValues) {
 			AccountScreen(navController)
 		}
 		composable(
-			Screen.TransactionScreen.route
+			Screen.TransactionScreen.route + "/{transaction}",
+			arguments = listOf(navArgument("transaction") { type = NavType.StringType })
 		) {
+			TransactionDetailScreen(navController = navController)
 		}
 	}
 }
