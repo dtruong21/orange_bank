@@ -1,4 +1,4 @@
-package app.eleven.bank.domain.interactor.getAccounts
+package app.eleven.bank.domain.interactor.get_accounts
 
 import app.eleven.bank.common.Resource
 import app.eleven.bank.domain.model.Account

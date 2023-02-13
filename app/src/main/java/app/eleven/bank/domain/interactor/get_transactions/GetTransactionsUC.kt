@@ -1,4 +1,4 @@
-package app.eleven.bank.domain.interactor.getTransations
+package app.eleven.bank.domain.interactor.get_transactions
 
 import app.eleven.bank.common.Resource
 import app.eleven.bank.domain.model.Transaction
